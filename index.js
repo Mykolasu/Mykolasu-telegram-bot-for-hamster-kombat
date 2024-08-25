@@ -21,29 +21,28 @@ app.use(cors());
 // Listen for any kind of message. There are different kinds of
 // messages.
 
+bot.on("message", async (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
 
-const start = () => {
-  bot.on("message", async (msg) => {
-    const chatId = msg.chat.id;
-    const text = msg.text;
-  
-    if (text === "/start") {
-      await bot.sendMessage(
-        chatId,
-        "to start the game click on the button below",
-        {
-          reply_markup: {
-            inline_keyboard: [[{ text: "Play", web_app: { url: webAppUrl } }]],
-          },
-        }
-      );
-    } else {
-      await bot.sendMessage(chatId, "I don't understand you.");
-    }
-  }); 
-}
+  if (text === "/start") {
+    await bot.sendMessage(
+      chatId,
+      "to start the game click on the button below",
+      {
+        reply_markup: {
+          inline_keyboard: [[{ text: "Play", web_app: { url: webAppUrl } }]],
+        },
+      }
+    );
+  } else {
+    await bot.sendMessage(chatId, "I don't understand you.");
+  }
+});
 
-start();
+app.post(`/bot${token}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
-
-app.listen(port, () => console.log('server started on PORT' + port));
+app.listen(port, () => console.log("server started on PORT" + port));
