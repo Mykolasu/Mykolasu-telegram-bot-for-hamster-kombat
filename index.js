@@ -40,9 +40,4 @@ bot.on("message", async (msg) => {
   }
 });
 
-app.post(`/bot${token}`, (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
-});
-
 app.listen(port, () => console.log("server started on PORT" + port));
