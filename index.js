@@ -5,6 +5,7 @@ require("dotenv").config();
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TOKEN;
+const port = process.env.PORT || 8080;
 const webAppUrl = "https://hamster-kombat-clone-cdgf.vercel.app";
 
 // Create a bot that uses 'polling' to fetch new updates
@@ -44,6 +45,5 @@ const start = () => {
 
 start();
 
-const PORT = 8080;
 
-app.listen(PORT, () => console.log('server started on PORT' + PORT));
+app.listen(port, () => console.log('server started on PORT' + PORT));
