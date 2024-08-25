@@ -46,4 +46,4 @@ const start = () => {
 start();
 
 
-app.listen(port, () => console.log('server started on PORT' + PORT));
+app.listen(port, () => console.log('server started on PORT' + port));
